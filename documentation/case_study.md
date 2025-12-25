@@ -66,10 +66,10 @@ After ruling out malware, analysis pivoted to threat intelligence.
 
 | Indicator | Value |
 |--------|------|
-| Initial URL | Bitly shortened link |
-| Final URL | GitHub Pages phishing site |
+| Initial URL |https://bit.ly/4oMx5xM?rid=ubi9ih8 |
+| Final URL | https://cyberkid001.github.io/site/index.html" |
 | Hosting IP | 67.199.248.11 |
-| VT Detections | 6/98 vendors |
+| VT Detections | 4/98 vendors |
 | Credential Harvesting | Yes |
 | Malware Payload | None |
 
