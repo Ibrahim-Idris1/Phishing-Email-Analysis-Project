@@ -1,4 +1,4 @@
-# 🛡️ Phishing Threat Intelligence & IOC Analysis Project
+# Phishing Threat Intelligence & IOC Analysis Project
 
 > **Portfolio Project | SOC & Threat Intelligence**
 
