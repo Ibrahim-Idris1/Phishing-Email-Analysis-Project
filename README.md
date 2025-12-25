@@ -1,19 +1,19 @@
 # Phishing Threat Intelligence & IOC Analysis Project
 
-> **Portfolio Project | SOC & Threat Intelligence**
+> ** SOC & Threat Intelligence**
 
 ![Splunk Dashboard Overview](screenshots/splunk_dashboard_overview.png)
 
 ---
 
-## 📖 Overview
+## Overview
 This project investigates a real-world **phishing email** impersonating a Google security alert. It demonstrates an end-to-end **SOC analyst workflow** including email analysis, IOC extraction, threat intelligence enrichment, MITRE ATT&CK mapping, and Splunk dashboard visualization.
 
 The phishing campaign abused a **URL shortener (Bitly)** and a **trusted hosting platform (GitHub Pages)** to harvest user credentials while bypassing traditional email authentication controls.
 
 ---
 
-## 🎯 Objectives
+## Objectives
 - Detect and analyze a phishing email
 - Extract and validate Indicators of Compromise (IOCs)
 - Enrich findings using threat intelligence platforms
@@ -23,7 +23,7 @@ The phishing campaign abused a **URL shortener (Bitly)** and a **trusted hosting
 
 ---
 
-## 🧰 Technologies & Tools
+## Technologies & Tools
 - **ANY.RUN** — Email and URL sandbox analysis  
 - **VirusTotal** — Threat intelligence and reputation analysis  
 - **Splunk Enterprise** — SOC dashboards and visualization  
@@ -32,7 +32,7 @@ The phishing campaign abused a **URL shortener (Bitly)** and a **trusted hosting
 
 ---
 
-## 📌 Attack Summary
+## Attack Summary
 
 | Attribute | Details |
 |---------|--------|
@@ -45,7 +45,7 @@ The phishing campaign abused a **URL shortener (Bitly)** and a **trusted hosting
 
 ---
 
-## 🔍 Methodology
+## Methodology
 
 ### 1. Email Analysis
 - Reviewed sender, subject, and message content
@@ -68,7 +68,7 @@ The phishing campaign abused a **URL shortener (Bitly)** and a **trusted hosting
 ### 4. MITRE ATT&CK Mapping
 Observed attacker behavior was mapped to the MITRE ATT&CK framework to align detection and response strategies.
 
-## 🧩 MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 | Tactic | Technique | Description |
 |------|----------|-------------|
@@ -78,7 +78,7 @@ Observed attacker behavior was mapped to the MITRE ATT&CK framework to align det
 
 ---
 
-## 📊 Splunk Dashboard Overview
+## Splunk Dashboard Overview
 
 ![Splunk Dashboard Panels](screenshots/splunk_dashboard_panels.png)
 
@@ -98,7 +98,7 @@ Observed attacker behavior was mapped to the MITRE ATT&CK framework to align det
 
 ---
 
-## 🔑 Key Findings
+## Key Findings
 - The phishing email impersonated Google and used urgency-based social engineering to prompt user interaction.
 - Email authentication mechanisms (SPF, DKIM, and DMARC) **passed**, indicating abuse of a legitimate Gmail account rather than traditional spoofing.
 - A URL shortener (Bitly) was used to obscure the final phishing destination.
@@ -108,7 +108,7 @@ Observed attacker behavior was mapped to the MITRE ATT&CK framework to align det
 
 ---
 
-## ⭐ Why This Project Matters
+## Why This Project Matters
 This project demonstrates how modern phishing campaigns bypass traditional security controls by abusing legitimate services and trusted infrastructure. It highlights the importance of:
 
 - Behavioral-based phishing detection
@@ -120,11 +120,11 @@ The project reflects real-world SOC workflows and showcases practical skills req
 
 ---
 
-## 👤 Author
+## Author
 **Ibrahim Idris**  
 Cybersecurity Analyst | SOC & Threat Intelligence  
 
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/ibrahim-idris-b5712a371/)
+[![https://www.linkedin.com/in/ibrahim-idris-b5712a371/](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/ibrahim-idris-b5712a371/)
 
 
 ---
