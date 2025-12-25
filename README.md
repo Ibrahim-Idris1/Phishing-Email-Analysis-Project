@@ -80,7 +80,6 @@ Observed attacker behavior was mapped to the MITRE ATT&CK framework to align det
 
 ## Splunk Dashboard Overview
 
-![Splunk Dashboard Panels](screenshots/splunk_dashboard_panels.png)
 
 ### Panels & Purpose
 
