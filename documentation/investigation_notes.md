@@ -31,7 +31,7 @@ Classified sandbox finding as a false positive.
 ### Step 4: URL Intelligence Findings
 - Bitly URL redirected to GitHub Pages
 - Page impersonated Google login
-- VT showed 6/98 detections
+- VT showed 4/98 detections
 - Page hosted on legitimate infrastructure
 
 ---
