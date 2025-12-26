@@ -1,0 +1,5 @@
+index=* 
+| search IOC_Type="URL*" OR Risk_Level="High"
+| eval threat_category="Phishing URL"
+| table _time IOC_Value Final_URL VirusTotal_Detections Risk_Level MITRE_Technique threat_category
+| sort -_time
