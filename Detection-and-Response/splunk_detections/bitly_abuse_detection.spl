@@ -1,0 +1,4 @@
+index=* 
+| search IOC_Value="*bit.ly*" OR Final_URL="*github.io*"
+| eval technique="URL Obfuscation"
+| table _time IOC_Value Final_URL VirusTotal_Detections Risk_Level technique
