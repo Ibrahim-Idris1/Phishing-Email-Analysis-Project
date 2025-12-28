@@ -1,72 +1,89 @@
-# Phishing Threat Intelligence & IOC Analysis Project
+# Phishing Threat Intelligence, Detection & Response Project
 
-> ** SOC & Threat Intelligence**
+> **SOC Operations | Threat Intelligence | Detection Engineering**
 
 ![Splunk Dashboard Overview](screenshots/splunk_dashboard_overview.png)
 
 ---
 
 ## Overview
-This project investigates a real-world **phishing email** impersonating a Google security alert. It demonstrates an end-to-end **SOC analyst workflow** including email analysis, IOC extraction, threat intelligence enrichment, MITRE ATT&CK mapping, and Splunk dashboard visualization.
+This project documents an end-to-end **Security Operations Center (SOC)** investigation of a real-world **phishing campaign impersonating Google Security Alerts**. The engagement goes beyond basic analysis by operationalizing findings into **Splunk detections and incident response playbooks**, reflecting how modern SOC teams turn intelligence into action.
 
-The phishing campaign abused a **URL shortener (Bitly)** and a **trusted hosting platform (GitHub Pages)** to harvest user credentials while bypassing traditional email authentication controls.
+The phishing campaign leveraged **social engineering**, **URL shortening (Bitly)**, and **abuse of trusted cloud infrastructure (GitHub Pages)** to harvest user credentials while bypassing traditional email authentication controls.
 
 ---
 
-## Objectives
-- Detect and analyze a phishing email
+## Project Objectives
+- Investigate and classify a phishing email
 - Extract and validate Indicators of Compromise (IOCs)
 - Enrich findings using threat intelligence platforms
-- Map attacker behavior to MITRE ATT&CK
-- Visualize threats using a SOC-style Splunk dashboard
-- Produce professional, portfolio-ready documentation
+- Map adversary behavior to **MITRE ATT&CK**
+- Build SOC-style **Splunk dashboards**
+- Develop **detections and response procedures** based on findings
+- Produce portfolio-ready SOC documentation
 
 ---
 
 ## Technologies & Tools
-- **ANY.RUN** — Email and URL sandbox analysis  
-- **VirusTotal** — Threat intelligence and reputation analysis  
-- **Splunk Enterprise** — SOC dashboards and visualization  
-- **WHOIS / DNS tools** — Infrastructure enrichment  
-- **GitHub Pages** — Observed phishing hosting platform  
+- **ANY.RUN** — Sandbox analysis for malware validation  
+- **VirusTotal** — Threat intelligence and URL reputation  
+- **Splunk Enterprise** — Detection, dashboards, and analytics  
+- **WHOIS / DNS Tools** — Infrastructure enrichment  
+- **GitHub Pages** — Observed abused hosting platform  
 
 ---
 
 ## Attack Summary
 
 | Attribute | Details |
-|---------|--------|
+|--------|--------|
 | **Attack Type** | Phishing (Credential Harvesting) |
 | **Impersonated Brand** | Google |
 | **Delivery Vector** | Email |
 | **Obfuscation Technique** | URL Shortener (Bitly) |
 | **Final Hosting Platform** | GitHub Pages |
+| **Malware Involved** | No |
 | **Overall Risk Level** | High |
 
 ---
 
-## Methodology
+## Investigation Methodology
 
 ### 1. Email Analysis
 - Reviewed sender, subject, and message content
-- Analyzed email authentication headers  
-- **SPF, DKIM, and DMARC checks passed**, indicating abuse of a **legitimate Gmail account**
-- Identified urgency-based social engineering techniques
+- Analyzed email authentication headers
+- **SPF, DKIM, and DMARC checks passed**, indicating abuse of a legitimate Gmail account rather than classic spoofing
+- Identified urgency-based social engineering language designed to trigger user action
 
-### 2. URL & Infrastructure Analysis
-- Extracted shortened URL from the email
-- Resolved the full redirection chain
-- Identified a fake Google login page hosted on GitHub Pages
-- Collected hosting IP, server headers, and SSL details
+---
 
-### 3. Threat Intelligence Enrichment
-- VirusTotal analysis of the final phishing URL
-- **6 / 98 security vendors flagged the URL as malicious**
-- First-seen timestamp confirmed recent malicious activity
-- Confirmed abuse of trusted infrastructure to evade detection
+### 2. Sandbox Analysis (ANY.RUN)
+The email file (`.eml`) was first analyzed in **ANY.RUN** to rule out malware delivery.
 
-### 4. MITRE ATT&CK Mapping
-Observed attacker behavior was mapped to the MITRE ATT&CK framework to align detection and response strategies.
+- ANY.RUN flagged suspicious behavior when the file triggered Microsoft Outlook
+- This behavior was determined to be **expected**, as `.eml` files open in email clients by default
+- No malicious payloads, exploits, or secondary execution were observed
+
+**Analyst Judgement:**  
+The sandbox alert was classified as a **false positive**, and the threat was determined to be **phishing-only**.
+
+---
+
+### 3. URL & Infrastructure Analysis
+- Extracted the shortened URL from the email body
+- Resolved the redirection chain
+- Identified a fake Google login page designed to harvest credentials
+- Collected hosting IP, server headers, and SSL information
+
+---
+
+### 4. Threat Intelligence Enrichment
+- VirusTotal analysis of the phishing URL
+- **6 out of 98 security vendors flagged the URL as malicious**
+- Redirect chain confirmed Bitly → GitHub Pages abuse
+- Infrastructure analysis showed abuse of trusted services to evade detection
+
+---
 
 ## MITRE ATT&CK Mapping
 
@@ -74,69 +91,38 @@ Observed attacker behavior was mapped to the MITRE ATT&CK framework to align det
 |------|----------|-------------|
 | Initial Access | T1566.002 | Spearphishing Link |
 | Credential Access | T1598.003 | Credential Harvesting |
+| Resource Development | T1583.001 | Abuse of Legitimate Infrastructure |
 | Execution | T1204 | User Execution |
 
 ---
 
 ## Splunk Dashboard Overview
 
-
 ### Panels & Purpose
 
 - **Threat Intelligence Summary (Single Value Panels)**  
-  Displays the total number of extracted IOCs, confirmed malicious URLs, and credential-harvesting attempts to provide rapid situational awareness.
+  Provides immediate situational awareness by displaying total IOCs, malicious URLs, and credential-harvesting attempts.
 
 - **URL & Redirect Overview (Table Panel)**  
-  Shows shortened URLs, redirection chains, final destinations, hosting IP addresses, and VirusTotal detection ratios to support analyst triage and investigation.
+  Displays shortened URLs, redirect chains, final destinations, hosting IPs, and VirusTotal detection ratios to support analyst triage.
 
-- **MITRE Technique Distribution (Chart)**  
-  Visualizes attacker techniques mapped to the MITRE ATT&CK framework, helping analysts understand adversary behavior patterns.
+- **MITRE Technique Distribution**  
+  Visualizes attacker techniques aligned to MITRE ATT&CK, helping analysts understand adversary behavior patterns.
 
 - **High-Risk IOC Table**  
-  Lists high-risk indicators (URLs, domains, IPs) with contextual risk information for immediate SOC response actions.
+  Lists confirmed high-risk indicators for rapid containment and response actions.
 
 ---
 
-## Key Findings
-- The phishing email impersonated Google and used urgency-based social engineering to prompt user interaction.
-- Email authentication mechanisms (SPF, DKIM, and DMARC) **passed**, indicating abuse of a legitimate Gmail account rather than traditional spoofing.
-- A URL shortener (Bitly) was used to obscure the final phishing destination.
-- The final phishing page was hosted on a **trusted platform (GitHub Pages)** to evade detection.
-- VirusTotal analysis showed **6 out of 98 security vendors** flagged the phishing URL as malicious.
-- The landing page convincingly mimicked a Google login page and attempted to harvest user credentials.
+## Detection & Response (Operationalization)
 
----
+Analysis findings were translated into **actionable SOC controls** to demonstrate real-world applicability.
 
-## Why This Project Matters
-This project demonstrates how modern phishing campaigns bypass traditional security controls by abusing legitimate services and trusted infrastructure. It highlights the importance of:
+### Detection Engineering
+Custom **Splunk detections** were created to:
+- Identify known phishing URLs
+- Detect credential harvesting activity
+- Monitor abuse of URL shortening services
+- Align detections with MITRE ATT&CK techniques
 
-- Behavioral-based phishing detection
-- Threat intelligence enrichment
-- MITRE ATT&CK–aligned analysis
-- SOC-focused visualization and reporting
-
-The project reflects real-world SOC workflows and showcases practical skills required for entry-level and junior SOC analyst roles.
-
----
-
-## Author
-**Ibrahim Idris**  
-Cybersecurity Analyst | SOC & Threat Intelligence  
-
-[![https://www.linkedin.com/in/ibrahim-idris-b5712a371/](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/ibrahim-idris-b5712a371/)
-
-
----
-
-## 🧠 Analysis Workflow
-
-```mermaid
-flowchart LR
-    A[Phishing Email Received] --> B[Email Header & Content Analysis]
-    B --> C[URL Extraction]
-    C --> D[ANY.RUN & VirusTotal Analysis]
-    D --> E[IOC Extraction]
-    E --> F[MITRE ATT&CK Mapping]
-    F --> G[Splunk Dashboard Visualization]
-
-
+Detection logic is documented in:
